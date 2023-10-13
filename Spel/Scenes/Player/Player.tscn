@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://juxtcol1p7da"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_7r3ji"]
+[ext_resource type="Texture2D" uid="uid://db01su5tsmcdn" path="res://Sprites/Player/chicken.png" id="2_3b7ee"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvd7w"]
+radius = 20.0
+height = 84.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xq33u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3b7ee")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3b7ee")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_7r3ji")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tvd7w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 2
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_xq33u")
+animation = &"walk"

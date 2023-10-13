@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdcigewkkrbfi"]
+
+[ext_resource type="Script" path="res://Scenes/Main.cs" id="1_ochxo"]
+[ext_resource type="PackedScene" uid="uid://juxtcol1p7da" path="res://Scenes/Player/Player.tscn" id="2_g1k32"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ochxo")
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(400, 400)
+
+[node name="Player" parent="." instance=ExtResource("2_g1k32")]
