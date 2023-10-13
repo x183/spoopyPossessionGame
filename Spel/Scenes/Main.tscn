@@ -15,3 +15,5 @@ collision_layer = 255
 collision_mask = 255
 
 [node name="Environment" parent="." instance=ExtResource("3_q242c")]
+disable_mode = 1
+collision_mask = 271

@@ -27,11 +27,13 @@ animations = [{
 }]
 
 [node name="Player" type="Area2D"]
+top_level = true
 script = ExtResource("1_7r3ji")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_tvd7w")
+one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 2
