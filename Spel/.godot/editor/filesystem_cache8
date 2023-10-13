@@ -1,6 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1697216683
-default_env.tres::Environment::-1::1697216428::0::1::::<><>::
+::res://::1697224714
+default_env.tres::Environment::2066930358078310831::1697224714::0::1::::<><>::
 icon.png::CompressedTexture2D::3140825686876162477::1697216039::1697216684::1::::<><>::
-::res://Scenes/::1697216355
-Combat.tscn::PackedScene::-1::1697216428::0::1::::<><>::
+::res://Scenes/::1697224714
+Combat.tscn::PackedScene::3409890825796375279::1697224714::0::1::::<><>::
+::res://Sprites/::1697225601
+fsh.png::CompressedTexture2D::5370176017432042737::1697217465::1697217523::1::::<><>::
+tilemap.png::CompressedTexture2D::525133094707199584::1697225591::1697225604::1::::<><>::
