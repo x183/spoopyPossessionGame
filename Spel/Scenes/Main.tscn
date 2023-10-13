@@ -8,12 +8,13 @@
 script = ExtResource("1_ochxo")
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(400, 400)
+position = Vector2(225, 438)
 
 [node name="Player" parent="." instance=ExtResource("2_g1k32")]
-collision_layer = 255
-collision_mask = 255
+collision_layer = 9
+collision_mask = 9
 
 [node name="Environment" parent="." instance=ExtResource("3_q242c")]
 disable_mode = 1
-collision_mask = 271
+collision_layer = 15
+collision_mask = 15

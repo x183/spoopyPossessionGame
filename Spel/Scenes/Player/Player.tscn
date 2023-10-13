@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_7r3ji"]
 [ext_resource type="Texture2D" uid="uid://db01su5tsmcdn" path="res://Sprites/Player/chicken.png" id="2_3b7ee"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvd7w"]
-radius = 20.0
-height = 84.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wj45a"]
+size = Vector2(53, 61)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xq33u"]
 animations = [{
@@ -26,13 +25,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Area2D"]
-top_level = true
+[node name="CharacterBody2D" type="CharacterBody2D"]
+platform_wall_layers = 1
 script = ExtResource("1_7r3ji")
-metadata/_edit_group_ = true
+Speed = 15000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_tvd7w")
+position = Vector2(0.5, 9.5)
+shape = SubResource("RectangleShape2D_wj45a")
 one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
