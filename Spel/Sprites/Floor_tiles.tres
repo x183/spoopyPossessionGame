@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://hqm4oluik4r1" path="res://Sprites/tilemap.png" id="1_tfd42"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f3ubc"]
+resource_name = "Floor"
 texture = ExtResource("1_tfd42")
 0:0/0 = 0
 1:0/0 = 0

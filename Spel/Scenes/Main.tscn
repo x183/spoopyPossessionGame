@@ -15,12 +15,10 @@ position = Vector2(225, 438)
 collision_layer = 9
 collision_mask = 9
 
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
+[node name="PlayerCamera" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
 limit_left = 0
 limit_top = 0
 script = ExtResource("3_jucfj")
+tilemap = NodePath("../../Environment")
 
 [node name="Environment" parent="." instance=ExtResource("3_q242c")]
-disable_mode = 1
-collision_layer = 15
-collision_mask = 15
