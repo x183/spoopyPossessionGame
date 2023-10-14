@@ -25,10 +25,9 @@ script = ExtResource("3_5iare")
 collision_layer = 9
 collision_mask = 9
 
-[node name="PlayerCamera" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
 limit_left = 0
 limit_top = 0
 script = ExtResource("3_jucfj")
-tilemap = NodePath("../../Environment")
 
 [node name="Environment" parent="." instance=ExtResource("3_q242c")]

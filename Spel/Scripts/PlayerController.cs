@@ -1,28 +1,28 @@
 using Godot;
 using System;
 
-public partial class PlayerController : CharacterBody2D
+public partial class PlayerController : Node
 {
 	[Export]
 	public float speed { get; set; } = 100;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Velocity = Vector2.Zero;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
-		getInput();
+		
 	}
 
-    public override void _PhysicsProcess(double delta)
-    {
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = getMovement();
 		float factor = speed * (float) delta;
-		GetOwner<CharacterBody2D>().Velocity = new Vector2(factor * Velocity.X, factor * Velocity.Y);
-    }
+		GetOwner<CharacterBody2D>().Velocity = new Vector2(factor * velocity.X, factor * velocity.Y);
+	}
 
-    private void getInput() {
+	private void getInput() {
 		getMovement();
 		getActions();
 	}
@@ -31,7 +31,7 @@ public partial class PlayerController : CharacterBody2D
 		// TODO if GetOwner() has some method 1/2 or 3 do that if input is correct
 	}
 
-	private void getMovement() {
+	private Vector2 getMovement() {
 		var velocity = Vector2.Zero;
 
 		var right = Input.IsActionPressed("ui_right");
@@ -44,6 +44,6 @@ public partial class PlayerController : CharacterBody2D
 		if (up) velocity.Y -= 1;
 		if (down) velocity.Y += 1;
 
-		Velocity = velocity.Normalized();
+		return velocity.Normalized();
 	}
 }
