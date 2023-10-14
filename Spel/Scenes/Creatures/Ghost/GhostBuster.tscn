@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cnyok0j4jfqq3" path="res://Sprites/buster.png" id="1_sffra"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xc3hy"]
+radius = 45.0
+height = 100.0
 
 [node name="GhostBuster" type="CharacterBody2D"]
 
