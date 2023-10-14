@@ -10,7 +10,8 @@ public partial class PlayerCamera : Camera2D
 	{
 		var mapRect = tilemap.GetUsedRect();
 		var tileSize = tilemap.CellQuadrantSize;
-		var worldSize = mapRect.Size * tileSize*5;
+		var tileScale = tilemap.Scale;
+		var worldSize = mapRect.Size * tileSize * (Vector2I)tileScale;
 		LimitRight = worldSize.X;
 		LimitBottom = worldSize.Y;
 	}
