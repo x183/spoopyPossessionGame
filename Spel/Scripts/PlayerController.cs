@@ -3,6 +3,7 @@ using System;
 
 public partial class PlayerController : CharacterBody2D
 {
+	[Export]
 	public float speed { get; set; } = 100;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

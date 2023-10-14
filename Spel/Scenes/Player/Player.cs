@@ -3,9 +3,6 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	[Export]
-	public int Speed { get; set; } = 100; // How fast the player will move (pixels/sec).
-
 	[Signal]
 	public delegate void HitEventHandler();
 
