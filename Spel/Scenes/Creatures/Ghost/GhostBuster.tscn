@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxrfscrdg3hoe"]
+
+[ext_resource type="Texture2D" uid="uid://cnyok0j4jfqq3" path="res://Sprites/buster.png" id="1_sffra"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xc3hy"]
+
+[node name="GhostBuster" type="CharacterBody2D"]
+
+[node name="BusterShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xc3hy")
+
+[node name="BusterImage" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_sffra")

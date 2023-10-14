@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdcigewkkrbfi"]
+[gd_scene load_steps=7 format=3 uid="uid://bdcigewkkrbfi"]
 
 [ext_resource type="Script" path="res://Scenes/Main.cs" id="1_ochxo"]
 [ext_resource type="PackedScene" uid="uid://juxtcol1p7da" path="res://Scenes/Player/Player.tscn" id="2_g1k32"]
+[ext_resource type="PackedScene" uid="uid://dxrfscrdg3hoe" path="res://Scenes/Creatures/Ghost/GhostBuster.tscn" id="2_r1fxx"]
+[ext_resource type="Script" path="res://Scenes/Creatures/Ghost/GhostBuster.cs" id="3_5iare"]
 [ext_resource type="Script" path="res://Scenes/PlayerCamera.cs" id="3_jucfj"]
 [ext_resource type="PackedScene" uid="uid://d3paxkwkdhwdq" path="res://Scenes/Environment.tscn" id="3_q242c"]
 
@@ -9,7 +11,15 @@
 script = ExtResource("1_ochxo")
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(225, 438)
+position = Vector2(232, 448)
+
+[node name="BusterStartPosition" type="Marker2D" parent="."]
+position = Vector2(100, 900)
+
+[node name="GhostBuster" parent="." instance=ExtResource("2_r1fxx")]
+z_index = 1
+platform_wall_layers = 1
+script = ExtResource("3_5iare")
 
 [node name="Player" parent="." instance=ExtResource("2_g1k32")]
 collision_layer = 9

@@ -8,7 +8,7 @@ public partial class Main : Node
 	{
 		NewGame();
 	}
-	
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
@@ -18,5 +18,9 @@ public partial class Main : Node
 		var player = GetNode<Player>("Player");
 		var startPosition = GetNode<Marker2D>("StartPosition");
 		player.Start(startPosition.Position);
+
+		var buster = GetNode<GhostBuster>("GhostBuster");
+		var busterPosition = GetNode<Marker2D>("BusterStartPosition");
+		buster.Start(busterPosition.Position);
 	}
 }
