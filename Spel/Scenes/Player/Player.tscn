@@ -25,18 +25,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 collision_mask = 5
 platform_wall_layers = 1
 script = ExtResource("1_7r3ji")
 Speed = 15000
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 9.5)
 shape = SubResource("RectangleShape2D_wj45a")
 one_way_collision_margin = 0.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 5
 texture_filter = 2
 scale = Vector2(5, 5)

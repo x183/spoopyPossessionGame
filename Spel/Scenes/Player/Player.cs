@@ -5,12 +5,12 @@ public partial class Player : CharacterBody2D
 {
 	[Export]
 	public int Speed { get; set; } = 100; // How fast the player will move (pixels/sec).
-	
+
 	[Signal]
 	public delegate void HitEventHandler();
-	
+
 	public Vector2 ScreenSize; // Size of the game window.
-	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -45,8 +45,8 @@ public partial class Player : CharacterBody2D
 		velocity = velocity.Normalized();
 		float factor = (Speed * (float)delta);
 		Velocity = new Vector2(velocity.X * factor, velocity.Y * factor);
-		
-		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+		var animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		if (Velocity.Length() > 0)
 		{
 			animatedSprite2D.Play();
@@ -55,7 +55,7 @@ public partial class Player : CharacterBody2D
 		{
 			animatedSprite2D.Stop();
 		}
-		
+
 		if (Velocity.X != 0)
 		{
 			animatedSprite2D.Animation = "walk";
@@ -68,23 +68,23 @@ public partial class Player : CharacterBody2D
 			animatedSprite2D.FlipV = Velocity.Y > 0;
 		}
 	}
-	
+
 	public override void _PhysicsProcess(double delta) {
 		MoveAndSlide();
 	}
-	
+
 	private void OnBodyEntered(PhysicsBody2D body)
 	{
 		Hide(); // Player disappears after being hit.
 		EmitSignal(SignalName.Hit);
 		// Must be deferred as we can't change physics properties on a physics callback.
-		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		GetNode<CollisionShape2D>("PlayerCollision").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 	}
-	
+
 	public void Start(Vector2 position)
 	{
 			Position = position;
 			Show();
-			GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+		GetNode<CollisionShape2D>("PlayerCollision").Disabled = false;
 	}
 }
