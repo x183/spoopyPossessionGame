@@ -10,9 +10,9 @@ public partial class PlayerCamera : Camera2D
 	{
 		var mapRect = tilemap.GetUsedRect();
 		var tileSize = tilemap.CellQuadrantSize;
-		var worldSize = mapRect.Size * tileSize;
+		var worldSize = mapRect.Size * tileSize*5;
 		LimitRight = worldSize.X;
-		LimitRight = worldSize.Y;
+		LimitBottom = worldSize.Y;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
