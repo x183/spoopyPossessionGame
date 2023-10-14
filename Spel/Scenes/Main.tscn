@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bdcigewkkrbfi"]
+[gd_scene load_steps=9 format=3 uid="uid://bdcigewkkrbfi"]
 
 [ext_resource type="Script" path="res://Scenes/Main.cs" id="1_ochxo"]
 [ext_resource type="PackedScene" uid="uid://juxtcol1p7da" path="res://Scenes/Player/Player.tscn" id="2_g1k32"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Creatures/Ghost/GhostBuster.cs" id="3_5iare"]
 [ext_resource type="Script" path="res://Scenes/PlayerCamera.cs" id="3_jucfj"]
 [ext_resource type="PackedScene" uid="uid://d3paxkwkdhwdq" path="res://Scenes/Environment.tscn" id="3_q242c"]
+[ext_resource type="PackedScene" uid="uid://x7y4f5crgyti" path="res://Scenes/Creatures/Possessable/Swimmer.tscn" id="7_nvftd"]
 [ext_resource type="TileSet" uid="uid://cp7e4xc3vsydt" path="res://Sprites/Puddle_tiles.tres" id="7_yi15m"]
 
 [node name="Main" type="Node"]
@@ -24,6 +25,13 @@ script = ExtResource("3_5iare")
 player = NodePath("../Player")
 metadata/Bustin = true
 
+[node name="GhostBuster2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_r1fxx")]
+z_index = 1
+platform_wall_layers = 1
+script = ExtResource("3_5iare")
+player = NodePath("../Player")
+metadata/Bustin = true
+
 [node name="Player" parent="." instance=ExtResource("2_g1k32")]
 collision_mask = 509
 
@@ -34,6 +42,9 @@ script = ExtResource("3_jucfj")
 tilemap = NodePath("../../Environment")
 
 [node name="Environment" parent="." instance=ExtResource("3_q242c")]
+
+[node name="Swimmer" parent="." instance=ExtResource("7_nvftd")]
+position = Vector2(800, 600)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(5, 5)

@@ -22,5 +22,6 @@ public partial class Main : Node
 		var buster = GetNode<GhostBuster>("GhostBuster");
 		var busterPosition = GetNode<Marker2D>("BusterStartPosition");
 		buster.Start(busterPosition.Position);
+
 	}
 }
