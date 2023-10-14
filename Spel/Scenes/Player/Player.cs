@@ -57,6 +57,6 @@ public partial class Player : CharacterBody2D
 	{
 			Position = position;
 			Show();
-		GetNode<CollisionShape2D>("PlayerCollision").Disabled = false;
+		//	GetNode<CollisionShape2D>("PlayerCollision").Disabled = false;
 	}
 }
