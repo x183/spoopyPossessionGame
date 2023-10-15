@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdcigewkkrbfi"]
+[gd_scene load_steps=8 format=3 uid="uid://bdcigewkkrbfi"]
 
 [ext_resource type="Script" path="res://Scenes/Main.cs" id="1_ochxo"]
 [ext_resource type="PackedScene" uid="uid://juxtcol1p7da" path="res://Scenes/Player/Player.tscn" id="2_g1k32"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://Scenes/PlayerCamera.cs" id="3_jucfj"]
 [ext_resource type="PackedScene" uid="uid://d3paxkwkdhwdq" path="res://Scenes/Environment.tscn" id="3_q242c"]
 [ext_resource type="PackedScene" uid="uid://x7y4f5crgyti" path="res://Scenes/Creatures/Possessable/Swimmer.tscn" id="7_nvftd"]
-[ext_resource type="TileSet" uid="uid://cp7e4xc3vsydt" path="res://Sprites/Puddle_tiles.tres" id="7_yi15m"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ochxo")
@@ -38,9 +37,3 @@ tilemap = NodePath("../../Environment")
 
 [node name="Swimmer" parent="." instance=ExtResource("7_nvftd")]
 position = Vector2(800, 600)
-
-[node name="TileMap" type="TileMap" parent="."]
-scale = Vector2(5, 5)
-tile_set = ExtResource("7_yi15m")
-format = 2
-layer_0/tile_data = PackedInt32Array(720902, 0, 0, 786438, 0, 1, 720903, 65536, 0, 786439, 65536, 1, 851974, 0, 0, 917510, 0, 1, 851975, 65536, 0, 917511, 65536, 1, 983046, 0, 0, 1048582, 0, 1, 983047, 65536, 0, 1048583, 65536, 1, 983048, 0, 0, 1048584, 0, 1, 983049, 65536, 0, 1048585, 65536, 1, 1114122, 0, 0, 1179658, 0, 1, 1114123, 65536, 0, 1179659, 65536, 1, 1114124, 0, 0, 1179660, 0, 1, 1114125, 65536, 0, 1179661, 65536, 1, 1114126, 0, 0, 1179662, 0, 1, 1114127, 65536, 0, 1179663, 65536, 1, 196609, 0, 0, 262145, 0, 1, 196610, 65536, 0, 262146, 65536, 1)
