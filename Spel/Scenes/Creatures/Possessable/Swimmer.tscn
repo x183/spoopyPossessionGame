@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://x7y4f5crgyti"]
+[gd_scene load_steps=4 format=3 uid="uid://x7y4f5crgyti"]
 
 [ext_resource type="Texture2D" uid="uid://ca0t2p1e5k402" path="res://Sprites/swimmer.png" id="1_3anko"]
+[ext_resource type="Script" path="res://Scripts/IdleMoveScript.cs" id="1_oe0f2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xc3hy"]
 radius = 26.0
@@ -9,6 +10,7 @@ height = 58.0
 [node name="Swimmer" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 191
+script = ExtResource("1_oe0f2")
 
 [node name="SwimmerShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_xc3hy")

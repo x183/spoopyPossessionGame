@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdcigewkkrbfi"]
+[gd_scene load_steps=10 format=3 uid="uid://bdcigewkkrbfi"]
 
 [ext_resource type="Script" path="res://Scenes/Main.cs" id="1_ochxo"]
 [ext_resource type="PackedScene" uid="uid://juxtcol1p7da" path="res://Scenes/Player/Player.tscn" id="2_g1k32"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d3paxkwkdhwdq" path="res://Scenes/Environment.tscn" id="3_q242c"]
 [ext_resource type="PackedScene" uid="uid://x7y4f5crgyti" path="res://Scenes/Creatures/Possessable/Swimmer.tscn" id="7_nvftd"]
 [ext_resource type="TileSet" uid="uid://cp7e4xc3vsydt" path="res://Sprites/Puddle_tiles.tres" id="7_yi15m"]
+[ext_resource type="Script" path="res://Scripts/IdleMoveScript.cs" id="8_xwly8"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ochxo")
@@ -19,13 +20,6 @@ position = Vector2(232, 448)
 position = Vector2(1984, 1112)
 
 [node name="GhostBuster" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_r1fxx")]
-z_index = 1
-platform_wall_layers = 1
-script = ExtResource("3_5iare")
-player = NodePath("../Player")
-metadata/Bustin = true
-
-[node name="GhostBuster2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_r1fxx")]
 z_index = 1
 platform_wall_layers = 1
 script = ExtResource("3_5iare")
@@ -45,6 +39,7 @@ tilemap = NodePath("../../Environment")
 
 [node name="Swimmer" parent="." instance=ExtResource("7_nvftd")]
 position = Vector2(800, 600)
+script = ExtResource("8_xwly8")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(5, 5)
