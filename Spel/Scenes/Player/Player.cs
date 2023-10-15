@@ -99,10 +99,10 @@ public partial class Player : CharacterBody2D
 	private Vector2 getMovement() {
 		var velocity = Vector2.Zero;
 
-		var right = Input.IsActionPressed("ui_right");
-		var left = Input.IsActionPressed("ui_left");
-		var up = Input.IsActionPressed("ui_up");
-		var down = Input.IsActionPressed("ui_down");
+		var right = Input.IsActionPressed("move_right");
+		var left = Input.IsActionPressed("move_left");
+		var up = Input.IsActionPressed("move_up");
+		var down = Input.IsActionPressed("move_down");
 
 		if (right) velocity.X += 1;
 		if (left) velocity.X -= 1;
