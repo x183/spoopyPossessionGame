@@ -7,6 +7,8 @@ public partial class Player : CharacterBody2D
 	public delegate void HitEventHandler();
 
 	public Vector2 ScreenSize; // Size of the game window.
+	private AudioStreamPlayer2D playerSound;
+	private bool wasOnSomething = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -43,6 +45,15 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta) {
 		MoveAndSlide();
+		if ((IsOnWall() || IsOnCeiling() || IsOnFloor()))
+		{
+			if (wasOnSomething == false && !playerSound.Playing)
+			{
+				wasOnSomething = true;
+				playerSound.Play();
+			}
+		}
+		else wasOnSomething = false;
 	}
 
 	private void OnBodyEntered(PhysicsBody2D body)
@@ -55,8 +66,9 @@ public partial class Player : CharacterBody2D
 
 	public void Start(Vector2 position)
 	{
-			Position = position;
-			Show();
+		playerSound = GetNode<AudioStreamPlayer2D>("PlayerSound");
+		Position = position;
+		Show();
 		//	GetNode<CollisionShape2D>("PlayerCollision").Disabled = false;
 	}
 }
