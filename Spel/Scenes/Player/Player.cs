@@ -62,7 +62,7 @@ public partial class Player : CharacterBody2D
 			animatedSprite2D.FlipH = Velocity.X < 0;
 		} else if (Velocity.Y != 0)
 		{
-			animatedSprite2D.Animation = "up";
+			animatedSprite2D.Animation = "walk";
 			animatedSprite2D.FlipV = Velocity.Y > 0;
 		}
 

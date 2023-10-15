@@ -1,26 +1,43 @@
-[gd_scene load_steps=8 format=3 uid="uid://juxtcol1p7da"]
+[gd_scene load_steps=12 format=3 uid="uid://juxtcol1p7da"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_7r3ji"]
 [ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="1_nmh8l"]
-[ext_resource type="Texture2D" uid="uid://db01su5tsmcdn" path="res://Sprites/Player/chicken.png" id="2_3b7ee"]
+[ext_resource type="Texture2D" uid="uid://q5atclmy8o71" path="res://Sprites/Player/ghost-Sheet.png" id="2_q8pmr"]
 [ext_resource type="AudioStream" uid="uid://hc44rjd5ed48" path="res://Sound/hitHurt.wav" id="4_aqh2g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wj45a"]
 size = Vector2(53, 61)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xq33u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghlk3"]
+atlas = ExtResource("2_q8pmr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n5ri"]
+atlas = ExtResource("2_q8pmr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2b0t"]
+atlas = ExtResource("2_q8pmr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbio4"]
+atlas = ExtResource("2_q8pmr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7klte"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3b7ee")
-}],
-"loop": true,
-"name": &"up",
-"speed": 5.0
+"texture": SubResource("AtlasTexture_ghlk3")
 }, {
-"frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_3b7ee")
+"texture": SubResource("AtlasTexture_0n5ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2b0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbio4")
 }],
 "loop": true,
 "name": &"walk",
@@ -43,8 +60,8 @@ one_way_collision_margin = 0.0
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 z_index = 5
 texture_filter = 2
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_xq33u")
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7klte")
 animation = &"walk"
 
 [node name="PlayerController" type="Node" parent="."]
