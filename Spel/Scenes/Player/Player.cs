@@ -11,7 +11,9 @@ public partial class Player : CharacterBody2D
 
 	private AudioStreamPlayer2D playerSound;
 	private bool wasOnSomething = false;
-	private bool hasPossessed;
+	private bool hasPossessed = false;
+
+	private Node2D currentPossession;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -29,19 +31,18 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustReleased("possess")) {
 			switch (hasPossessed) {
 				case true:
-					// ReleasePossession()
-					hasPossessed = false;
-					EmitSignal(SignalName.ReleasePossession);
+					RelPossession();
 					break;
 				case false:
 					var bodies = GetNode<Area2D>("PlayerInteractArea").GetOverlappingBodies();
 					bodies.OrderBy(body => body.Position.DistanceTo(Position));
 					GD.Print(bodies);
-					// Remember that first body is ones own body
-					//PossessMonster();
+					if (bodies.Count > 0) {
+						GD.Print(bodies[0]);
+						PossessMonster(bodies[0]);
+					}
 					break;
 			}
-
 		}
 
 		var animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
@@ -90,7 +91,7 @@ public partial class Player : CharacterBody2D
 		Hide(); // Player disappears after being hit.
 
 		// Must be deferred as we can't change physics properties on a physics callback.
-		GetNode<CollisionShape2D>("PlayerCollision").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+
 	}
 
 	public void Start(Vector2 position)
@@ -99,6 +100,26 @@ public partial class Player : CharacterBody2D
 		Position = position;
 		Show();
 		//	GetNode<CollisionShape2D>("PlayerCollision").Disabled = false;
+	}
+
+	private void PossessMonster(Node2D monster) {
+		GD.Print("Possessed" + monster);
+		if (!monster.HasMethod("PossessMonster")) {
+			GD.Print("Couldn't possess");
+		}
+		monster.Call("Possess");
+		currentPossession = monster;
+		hasPossessed = true;
+		GetNode<CollisionShape2D>("PlayerCollision").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		Hide();
+	}
+
+	private void RelPossession() {
+		hasPossessed = false;
+		EmitSignal(SignalName.ReleasePossession);
+		GetNode<CollisionShape2D>("PlayerCollision").SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+		Position = currentPossession.Position;
+		Show();
 	}
 
 	private Vector2 getMovement() {
@@ -115,10 +136,5 @@ public partial class Player : CharacterBody2D
 		if (down) velocity.Y += 1;
 
 		return velocity.Normalized();
-	}
-	private void _on_release_possession()
-	{
-		// Replace with function body.
-		QueueFree();
 	}
 }

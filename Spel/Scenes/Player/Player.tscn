@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://juxtcol1p7da"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_7r3ji"]
-[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="1_nmh8l"]
 [ext_resource type="Texture2D" uid="uid://q5atclmy8o71" path="res://Sprites/Player/ghost-Sheet.png" id="2_q8pmr"]
 [ext_resource type="AudioStream" uid="uid://hc44rjd5ed48" path="res://Sound/hitHurt.wav" id="4_aqh2g"]
 
@@ -44,6 +43,58 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CSharpScript" id="CSharpScript_nbwdx"]
+script/source = "using Godot;
+using System;
+
+public partial class PlayerController : Node
+{
+	[Export]
+	public float speed { get; set; } = 100;
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta) {
+
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = getMovement();
+		float factor = speed * (float) delta;
+		GetOwner<CharacterBody2D>().Velocity = new Vector2(factor * velocity.X, factor * velocity.Y);
+	}
+
+	private void getInput() {
+		getMovement();
+		getActions();
+	}
+
+	private void getActions() {
+		// TODO if GetOwner() has some method 1/2 or 3 do that if input is correct
+	}
+
+	private Vector2 getMovement() {
+		var velocity = Vector2.Zero;
+
+		var right = Input.IsActionPressed(\"ui_right\");
+		var left = Input.IsActionPressed(\"ui_left\");
+		var up = Input.IsActionPressed(\"ui_up\");
+		var down = Input.IsActionPressed(\"ui_down\");
+
+		if (right) velocity.X += 1;
+		if (left) velocity.X -= 1;
+		if (up) velocity.Y -= 1;
+		if (down) velocity.Y += 1;
+
+		return velocity.Normalized();
+	}
+}
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7gi3"]
 
 [node name="Player" type="CharacterBody2D"]
@@ -65,7 +116,7 @@ sprite_frames = SubResource("SpriteFrames_7klte")
 animation = &"walk"
 
 [node name="PlayerController" type="Node" parent="."]
-script = ExtResource("1_nmh8l")
+script = SubResource("CSharpScript_nbwdx")
 speed = 15000.0
 
 [node name="PlayerSound" type="AudioStreamPlayer2D" parent="."]
@@ -79,3 +130,5 @@ collision_mask = 8
 position = Vector2(0, 8.585)
 scale = Vector2(7.5, 7.5)
 shape = SubResource("CircleShape2D_i7gi3")
+
+[connection signal="ReleasePossession" from="." to="." method="_on_release_possession"]

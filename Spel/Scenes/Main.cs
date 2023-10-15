@@ -13,6 +13,7 @@ public partial class Main : Node
 	public override void _Process(double delta)
 	{
 	}
+
 	public void NewGame()
 	{
 		var player = GetNode<Player>("Player");
@@ -22,6 +23,5 @@ public partial class Main : Node
 		var buster = GetNode<GhostBuster>("GhostBuster");
 		var busterPosition = GetNode<Marker2D>("BusterStartPosition");
 		buster.Start(busterPosition.Position);
-
 	}
 }
