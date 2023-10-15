@@ -37,7 +37,7 @@ public partial class Player : CharacterBody2D
 					var bodies = GetNode<Area2D>("PlayerInteractArea").GetOverlappingBodies();
 					bodies.OrderBy(body => body.Position.DistanceTo(Position));
 					GD.Print(bodies);
-					// Remember that first body is ones own
+					// Remember that first body is ones own body
 					//PossessMonster();
 					break;
 			}
