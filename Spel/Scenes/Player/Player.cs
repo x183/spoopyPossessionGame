@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Player : CharacterBody2D
 {
@@ -33,8 +34,12 @@ public partial class Player : CharacterBody2D
 					EmitSignal(SignalName.ReleasePossession);
 					break;
 				case false:
-					// PossessMonster()
-						break;
+					var bodies = GetNode<Area2D>("PlayerInteractArea").GetOverlappingBodies();
+					bodies.OrderBy(body => body.Position.DistanceTo(Position));
+					GD.Print(bodies);
+					// Remember that first body is ones own body
+					//PossessMonster();
+					break;
 			}
 
 		}
@@ -69,7 +74,7 @@ public partial class Player : CharacterBody2D
 		}
 		Velocity = getMovement() * (float)delta * speed;
 		MoveAndSlide();
-		if ((IsOnWall() || IsOnCeiling() || IsOnFloor()))
+		if (IsOnWall() || IsOnCeiling() || IsOnFloor())
 		{
 			if (wasOnSomething == false && !playerSound.Playing)
 			{

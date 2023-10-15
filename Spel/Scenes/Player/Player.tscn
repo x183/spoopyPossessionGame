@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://juxtcol1p7da"]
+[gd_scene load_steps=8 format=3 uid="uid://juxtcol1p7da"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_7r3ji"]
+[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="1_nmh8l"]
 [ext_resource type="Texture2D" uid="uid://db01su5tsmcdn" path="res://Sprites/Player/chicken.png" id="2_3b7ee"]
 [ext_resource type="AudioStream" uid="uid://hc44rjd5ed48" path="res://Sound/hitHurt.wav" id="4_aqh2g"]
 
@@ -26,6 +27,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i7gi3"]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(2, 0)
 collision_layer = 8
@@ -44,7 +47,18 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_xq33u")
 animation = &"walk"
 
+[node name="PlayerController" type="Node" parent="."]
+script = ExtResource("1_nmh8l")
+speed = 15000.0
+
 [node name="PlayerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_aqh2g")
 
-[connection signal="ReleasePossession" from="." to="." method="_on_release_possession"]
+[node name="PlayerInteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractArea"]
+position = Vector2(0, 8.585)
+scale = Vector2(7.5, 7.5)
+shape = SubResource("CircleShape2D_i7gi3")
