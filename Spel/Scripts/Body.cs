@@ -18,11 +18,11 @@ public partial class Body : CharacterBody2D
 		}
 	}
 
-    public override void _PhysicsProcess(double delta) {
+	public override void _PhysicsProcess(double delta) {
 		if (this.isPossessed) {
 			MoveAndSlide();
 		}
-    }
+	}
 
 	private void GetInput() {
 		var velocity = Vector2.Zero;

@@ -4,22 +4,41 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Signal]
-	public delegate void HitEventHandler();
+	public delegate void ReleasePossessionEventHandler();
+	[Export]
+	public int speed = 15000;
 
-	public Vector2 ScreenSize; // Size of the game window.
 	private AudioStreamPlayer2D playerSound;
 	private bool wasOnSomething = false;
+	private bool hasPossessed;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		ScreenSize = GetViewportRect().Size;
 		Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Check for possession
+		if (hasPossessed && !Input.IsActionJustReleased("possess")) {
+			return;
+		}
+		if (Input.IsActionJustReleased("possess")) {
+			switch (hasPossessed) {
+				case true:
+					// ReleasePossession()
+					hasPossessed = false;
+					EmitSignal(SignalName.ReleasePossession);
+					break;
+				case false:
+					// PossessMonster()
+						break;
+			}
+
+		}
+
 		var animatedSprite2D = GetNode<AnimatedSprite2D>("PlayerAnimation");
 		if (Velocity.Length() > 0)
 		{
@@ -41,9 +60,14 @@ public partial class Player : CharacterBody2D
 			animatedSprite2D.Animation = "up";
 			animatedSprite2D.FlipV = Velocity.Y > 0;
 		}
+
 	}
 
 	public override void _PhysicsProcess(double delta) {
+		if (hasPossessed) { // Do not update physics if player has possessed
+			return;
+		}
+		Velocity = getMovement() * (float)delta * speed;
 		MoveAndSlide();
 		if ((IsOnWall() || IsOnCeiling() || IsOnFloor()))
 		{
@@ -59,7 +83,7 @@ public partial class Player : CharacterBody2D
 	private void OnBodyEntered(PhysicsBody2D body)
 	{
 		Hide(); // Player disappears after being hit.
-		EmitSignal(SignalName.Hit);
+
 		// Must be deferred as we can't change physics properties on a physics callback.
 		GetNode<CollisionShape2D>("PlayerCollision").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 	}
@@ -70,5 +94,26 @@ public partial class Player : CharacterBody2D
 		Position = position;
 		Show();
 		//	GetNode<CollisionShape2D>("PlayerCollision").Disabled = false;
+	}
+
+	private Vector2 getMovement() {
+		var velocity = Vector2.Zero;
+
+		var right = Input.IsActionPressed("ui_right");
+		var left = Input.IsActionPressed("ui_left");
+		var up = Input.IsActionPressed("ui_up");
+		var down = Input.IsActionPressed("ui_down");
+
+		if (right) velocity.X += 1;
+		if (left) velocity.X -= 1;
+		if (up) velocity.Y -= 1;
+		if (down) velocity.Y += 1;
+
+		return velocity.Normalized();
+	}
+	private void _on_release_possession()
+	{
+		// Replace with function body.
+		QueueFree();
 	}
 }
